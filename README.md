@@ -1,5 +1,5 @@
 # Software-Engineering-Fall-2023
-# Policy Vote:
+# Project Title: Policy Vote
 # Hakeem Mateen 
 # Dean Senell
 # Sivamalai Chandrashekar
