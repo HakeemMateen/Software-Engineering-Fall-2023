@@ -16,11 +16,21 @@ class UserHomeScreen extends StatefulWidget {
 class _UserHomeScreenState extends State<UserHomeScreen> {
   late List screens;
   int currentIndex = 0;
+  String? selectedOrganization;
   @override
   Widget build(BuildContext context) {
     screens = [
-      OrganizationScreen(),
-      PolicyScreen(),
+      OrganizationScreen(
+        updateSelectedOrganization: (newSelectedOrganization) {
+          setState(() {
+            selectedOrganization = newSelectedOrganization;
+          });
+        },
+        selectedOrganization: selectedOrganization,
+      ),
+      PolicyScreen(
+        selectedOrganization: selectedOrganization,
+      ),
       UserSettingsScreen(),
     ];
     return Scaffold(
@@ -39,14 +49,14 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 },
                 icon: Icon(Icons.library_add)),
             IconButton(
-                onPressed: () {
-                  setState(() {
-                    currentIndex = 1;
-                  });
-                },
-                icon: Icon(Icons.list)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.home)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                onPressed: selectedOrganization == null
+                    ? null
+                    : () {
+                        setState(() {
+                          currentIndex = 1;
+                        });
+                      },
+                icon: Icon(Icons.home)),
             IconButton(
                 onPressed: () {
                   setState(() {

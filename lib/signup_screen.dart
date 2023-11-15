@@ -21,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         email: _emailController.text,
         password: _passwordController.text,
       );
+
       print('User created: ${userCredential.user!.email}');
       // Navigate back to the sign-in page
       Navigator.pop(context);

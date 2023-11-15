@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:voting_app/signup_screen.dart';
+import 'package:voting_app/user_home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: myEmailAddressController.text,
           password: myPasswordController.text);
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: ((context) => const UserHomeScreen()),
+        ),
+        (route) => false,
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
