@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:voting_app/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -27,6 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void navigateToSignUpScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SignUpScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintText: 'Password',
               ),
             ),
-            OutlinedButton(onPressed: loginFunction, child: Text("Login"))
+            OutlinedButton(onPressed: loginFunction, child: Text("Login")),
+            SizedBox(height: 10),
+            TextButton(
+              onPressed: navigateToSignUpScreen,
+              child: Text("Sign Up"),
+            ),
           ],
         ),
       ),
