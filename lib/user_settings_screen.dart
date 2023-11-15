@@ -20,13 +20,32 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
         (route) => false);
   }
 
+  Future<void> deleteAccountFunction() async {
+    try {
+      // Get the current user
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Delete the user's account
+      await user?.delete();
+
+      // Navigate to the login screen
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: ((context) => LoginScreen())),
+          (route) => false);
+    } on FirebaseAuthException catch (e) {
+      print('Error deleting account: ${e.message}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: Column(
           children: [
-            OutlinedButton(onPressed: logoutFunction, child: Text("Logout"))
+            OutlinedButton(onPressed: logoutFunction, child: Text("Logout")),
+            OutlinedButton(onPressed: deleteAccountFunction, child: Text("Delete Account"))
           ],
         ),
       ),
