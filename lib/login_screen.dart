@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final myEmailAddressController = TextEditingController();
   final myPasswordController = TextEditingController();
+
   Future<void> loginFunction() async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -50,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               controller: myPasswordController,
+              obscureText: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Password',
