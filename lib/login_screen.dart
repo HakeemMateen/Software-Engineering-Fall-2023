@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:voting_app/signup_screen.dart';
 import 'package:voting_app/user_home_screen.dart';
@@ -40,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void navigateToSignUpScreen() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
+      MaterialPageRoute(builder: (context) => const SignUpScreen()),
     );
   }
 
@@ -52,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextField(
               controller: myEmailAddressController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Email Address',
               ),
@@ -60,16 +58,16 @@ class _LoginScreenState extends State<LoginScreen> {
             TextField(
               controller: myPasswordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Password',
               ),
             ),
-            OutlinedButton(onPressed: loginFunction, child: Text("Login")),
-            SizedBox(height: 10),
+            OutlinedButton(onPressed: loginFunction, child: const Text("Login")),
+            const SizedBox(height: 10),
             TextButton(
               onPressed: navigateToSignUpScreen,
-              child: Text("Sign Up"),
+              child: const Text("Sign Up"),
             ),
           ],
         ),

@@ -1,9 +1,7 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:voting_app/organization_screen.dart';
 
 class PolicyScreen extends StatefulWidget {
   final String? selectedOrganization;
@@ -33,7 +31,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
     print(widget.selectedOrganization);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Policy Screen'),
+        title: const Text('Policy Screen'),
       ),
       body: StreamBuilder(
           stream: policyStream,
@@ -93,7 +91,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
                           String title = "";
                           String body = "";
                           return AlertDialog(
-                            title: Text("Create Policy"),
+                            title: const Text("Create Policy"),
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -102,16 +100,16 @@ class _PolicyScreenState extends State<PolicyScreen> {
                                     title = value;
                                   },
                                   decoration:
-                                      InputDecoration(labelText: 'Title'),
+                                      const InputDecoration(labelText: 'Title'),
                                 ),
                                 TextField(
                                   onChanged: (value) {
                                     body = value;
                                   },
                                   decoration:
-                                      InputDecoration(labelText: 'Body'),
+                                      const InputDecoration(labelText: 'Body'),
                                 ),
-                                SizedBox(height: 20.0),
+                                const SizedBox(height: 20.0),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -120,7 +118,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
                                         Navigator.pop(
                                             context); // Close the dialog
                                       },
-                                      child: Text("Cancel"),
+                                      child: const Text("Cancel"),
                                     ),
                                     TextButton(
                                       onPressed: () {
@@ -163,7 +161,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
                                           });
                                         }
                                       },
-                                      child: Text("Confirm"),
+                                      child: const Text("Confirm"),
                                     ),
                                   ],
                                 ),
@@ -177,7 +175,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return AlertDialog(
+                          return const AlertDialog(
                             title: Text("Error"),
                             content:
                                 Text("Please select an organization first."),
@@ -186,7 +184,7 @@ class _PolicyScreenState extends State<PolicyScreen> {
                       );
                     }
                   },
-                  child: Text('Create Policy'),
+                  child: const Text('Create Policy'),
                 ),
               ],
             );
@@ -222,14 +220,14 @@ class PolicyDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(policy['body'] as String),
           ),
-          Spacer(), // This creates space above the voting buttons
+          const Spacer(), // This creates space above the voting buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               _buildVotingButton('yes', index, policies, selectedOrganization),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               _buildVotingButton('no', index, policies, selectedOrganization),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               _buildVotingButton(
                   'abstain', index, policies, selectedOrganization),
             ],
@@ -268,7 +266,7 @@ class PolicyDetailScreen extends StatelessWidget {
           borderRadius:
               BorderRadius.circular(10.0), // Adjust the border radius as needed
         ),
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
       ),
       child: Text(voteType),
     );

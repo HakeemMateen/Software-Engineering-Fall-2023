@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:voting_app/login_screen.dart';
 
 class UserSettingsScreen extends StatefulWidget {
@@ -16,7 +14,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
     await FirebaseAuth.instance.signOut();
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: ((context) => LoginScreen())),
+        MaterialPageRoute(builder: ((context) => const LoginScreen())),
         (route) => false);
   }
 
@@ -31,7 +29,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
       // Navigate to the login screen
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: ((context) => LoginScreen())),
+          MaterialPageRoute(builder: ((context) => const LoginScreen())),
           (route) => false);
     } on FirebaseAuthException catch (e) {
       print('Error deleting account: ${e.message}');
@@ -44,8 +42,8 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
       body: Container(
         child: Column(
           children: [
-            OutlinedButton(onPressed: logoutFunction, child: Text("Logout")),
-            OutlinedButton(onPressed: deleteAccountFunction, child: Text("Delete Account"))
+            OutlinedButton(onPressed: logoutFunction, child: const Text("Logout")),
+            OutlinedButton(onPressed: deleteAccountFunction, child: const Text("Delete Account"))
           ],
         ),
       ),

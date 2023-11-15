@@ -1,14 +1,7 @@
-import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class OrganizationScreen extends StatefulWidget {
   const OrganizationScreen(
@@ -42,13 +35,13 @@ class _OrganizationScreenState extends State<OrganizationScreen> {
           return const CircularProgressIndicator();
         }
         organizations = snapshot.data!.docs
-            .map((postDoc) => postDoc.data() as Map<String, dynamic>)
+            .map((postDoc) => postDoc.data())
             .toList();
         print(organizations);
         return Column(
           children: [
             SizedBox(
-              height: 800,
+              height: 500,
               child: ListView(
                 children: organizations
                     .where((element) => element['userList']
@@ -71,7 +64,7 @@ class _OrganizationScreenState extends State<OrganizationScreen> {
                 'Selected Organization: ${widget.selectedOrganization}',
               ),
             // Add other details or widgets related to the selected organization here
-            Spacer(),
+            const Spacer(),
 
             NewWidget(
                 organizationNameController: organizationNameController,
@@ -106,7 +99,7 @@ class NewWidget extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: Text("Enter Organization Name."),
+                  title: const Text("Enter Organization Name."),
                   content: TextField(
                     controller: organizationNameController,
                   ),
@@ -115,7 +108,7 @@ class NewWidget extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context); // Close the dialog
                       },
-                      child: Text("Cancel"),
+                      child: const Text("Cancel"),
                     ),
                     TextButton(
                       onPressed: () {
@@ -142,7 +135,7 @@ class NewWidget extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return AlertDialog(
+                              return const AlertDialog(
                                 title: Text("Error"),
                                 content:
                                     Text("Organization name cannot be empty."),
@@ -151,18 +144,18 @@ class NewWidget extends StatelessWidget {
                           );
                         }
                       },
-                      child: Text("OK"),
+                      child: const Text("OK"),
                     ),
                   ],
                 );
               },
             );
           },
-          child: Icon(Icons.add),
-          backgroundColor: Color.fromARGB(255, 109, 33, 75),
+          backgroundColor: const Color.fromARGB(255, 109, 33, 75),
           elevation: 2.0,
           tooltip: 'Add',
           heroTag: 'addOrganizationTag',
+          child: const Icon(Icons.add),
         ),
         ElevatedButton(
           onPressed: () {
@@ -171,7 +164,7 @@ class NewWidget extends StatelessWidget {
             //print(
             //'Selected ${widget.selectedOrganization} as the current organization');
           },
-          child: Text('Select Current Organization'),
+          child: const Text('Select Current Organization'),
         ),
         FloatingActionButton(
           onPressed: () {
@@ -180,7 +173,7 @@ class NewWidget extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: Text("Enter Organization Name."),
+                  title: const Text("Enter Organization Name."),
                   content: TextField(
                     controller: organizationNameController,
                   ),
@@ -189,7 +182,7 @@ class NewWidget extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context); // Close the dialog
                       },
-                      child: Text("Cancel"),
+                      child: const Text("Cancel"),
                     ),
                     TextButton(
                       onPressed: () {
@@ -237,7 +230,7 @@ class NewWidget extends StatelessWidget {
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return AlertDialog(
+                                return const AlertDialog(
                                   title: Text("Error"),
                                   content:
                                       Text("Enter a valid organization name."),
@@ -250,7 +243,7 @@ class NewWidget extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return AlertDialog(
+                              return const AlertDialog(
                                 title: Text("Error"),
                                 content:
                                     Text("Organization name cannot be empty."),
@@ -259,18 +252,18 @@ class NewWidget extends StatelessWidget {
                           );
                         }
                       },
-                      child: Text("Join"),
+                      child: const Text("Join"),
                     ),
                   ],
                 );
               },
             );
           },
-          child: Icon(Icons.person_add),
           backgroundColor: Colors.green,
           elevation: 2.0,
           tooltip: 'Join',
           heroTag: 'joinOrganizationTag',
+          child: const Icon(Icons.person_add),
         ),
       ],
     );

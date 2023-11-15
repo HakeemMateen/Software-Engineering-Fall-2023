@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:voting_app/organization_screen.dart';
 import 'package:voting_app/policy_screen.dart';
 import 'package:voting_app/user_settings_screen.dart';
@@ -31,7 +28,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
       PolicyScreen(
         selectedOrganization: selectedOrganization,
       ),
-      UserSettingsScreen(),
+      const UserSettingsScreen(),
     ];
     return Scaffold(
       body: Builder(
@@ -47,7 +44,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     currentIndex = 0;
                   });
                 },
-                icon: Icon(Icons.library_add)),
+                icon: const Icon(Icons.library_add)),
             IconButton(
                 onPressed: selectedOrganization == null
                     ? null
@@ -56,14 +53,14 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                           currentIndex = 1;
                         });
                       },
-                icon: Icon(Icons.home)),
+                icon: const Icon(Icons.home)),
             IconButton(
                 onPressed: () {
                   setState(() {
                     currentIndex = 2;
                   });
                 },
-                icon: Icon(Icons.settings))
+                icon: const Icon(Icons.settings))
           ],
         ),
       ),
